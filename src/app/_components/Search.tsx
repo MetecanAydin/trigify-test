@@ -10,6 +10,7 @@ import { Badge } from "trigify-test/components/ui/badge";
 import { Button } from "trigify-test/components/ui/button";
 import { Input } from "trigify-test/components/ui/input";
 import { Card, CardContent } from "trigify-test/components/ui/card";
+import { useDebounce } from "trigify-test/lib/utils";
 
 export function Search() {
   const [name, setName] = useState("");
@@ -17,7 +18,10 @@ export function Search() {
   const ref = useRef<HTMLInputElement>(null);
   const searchParams = new URLSearchParams(useSearchParams().toString());
   const searchJobTitles = searchByName(searchParams?.get('jobTitle') ?? '', searchParams?.get('page') ?? '0')
-  const searches = search(name, document.activeElement === ref.current)
+
+  const debouncedValue = useDebounce(name, 300)
+
+  const searches = search(debouncedValue, document.activeElement === ref.current)
   const router = useRouter()
   const { isSignedIn } = useAuth();
 
