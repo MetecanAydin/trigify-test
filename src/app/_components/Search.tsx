@@ -96,9 +96,11 @@ export function Search() {
                     {searchJobTitles.data.results?.map(t =>
                       <li className="" key={t.id}>
                         <Card className="bg-sky-100 pl-4 py-2 mb-4 h-full rounded-sm">
-                          <div>Title:
+
+                          <div className="flex flex-row">
+                            Title:
                             <Badge
-                              className="p-1 cursor-pointer hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]"
+                              className="p-1 h-fit cursor-pointer hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]"
                               onClick={e => {
                                 setName(e.currentTarget.textContent ?? '')
                                 searchParams.set("jobTitle", e.currentTarget.textContent ?? '');
@@ -108,6 +110,7 @@ export function Search() {
                             >
                               {t.name}
                             </Badge>
+                            <p className="ml-auto pr-2">{t.pdlCount}</p>
                           </div>
                           <div className="mt-4 flex-wrap flex flex-row">
                             {t.relatedTitles.length > 0 ?
