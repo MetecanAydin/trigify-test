@@ -32,3 +32,7 @@ Technologies used in this project:
 This project has been configured to deploy with:
 - [Vercel](https://vercel.com) for the Frontend
 - [Supabase](https://supabase.com) for the Backend.
+
+
+## Documentation
+- [Read documentation here](./documentation.md)
