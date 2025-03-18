@@ -38,7 +38,6 @@ export const jobTitleRouter = createTRPCRouter({
     searchByName: publicProcedure
         .input(z.object({ query: z.string(), page: z.string() }))
         .query(async ({ input }) => {
-            console.log(prisma.title.count())
             const result = await prisma.$transaction([
                 prisma.title.count({
                     where: {
