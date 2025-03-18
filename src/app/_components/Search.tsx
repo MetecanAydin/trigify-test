@@ -69,8 +69,8 @@ export function Search() {
                       {searches.data?.map(d =>
                         <li key={d.id}
                           onClick={e => {
-                            setName(e.currentTarget.textContent!)
-                            searchParams.set("jobTitle", e.currentTarget.textContent!);
+                            setName(e.currentTarget.textContent ?? '')
+                            searchParams.set("jobTitle", e.currentTarget.textContent ?? '');
                             router.push(`?${searchParams.toString()}`);
                           }}
                           className="p-1 cursor-pointer"
@@ -96,7 +96,19 @@ export function Search() {
                     {searchJobTitles.data.results?.map(t =>
                       <li className="" key={t.id}>
                         <Card className="bg-sky-100 pl-4 py-2 mb-4 h-full rounded-sm">
-                          <div>Title: <Badge className="p-1 hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]">{t.name}</Badge></div>
+                          <div>Title:
+                            <Badge
+                              className="p-1 cursor-pointer hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]"
+                              onClick={e => {
+                                setName(e.currentTarget.textContent ?? '')
+                                searchParams.set("jobTitle", e.currentTarget.textContent ?? '');
+                                searchParams.set("page", '0');
+                                router.push(`?${searchParams.toString()}`);
+                              }}
+                            >
+                              {t.name}
+                            </Badge>
+                          </div>
                           <div className="mt-4 flex-wrap flex flex-row">
                             {t.relatedTitles.length > 0 ?
                               <>
@@ -107,8 +119,8 @@ export function Search() {
                                     <Badge
                                       key={rt.id}
                                       onClick={e => {
-                                        setName(e.currentTarget.textContent!)
-                                        searchParams.set("jobTitle", e.currentTarget.textContent!);
+                                        setName(e.currentTarget.textContent ?? '')
+                                        searchParams.set("jobTitle", e.currentTarget.textContent ?? '');
                                         searchParams.set("page", '0');
                                         router.push(`?${searchParams.toString()}`);
                                       }}
