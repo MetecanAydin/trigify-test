@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
 const prisma = new PrismaClient();
 
 async function main() {
@@ -42,6 +41,7 @@ async function main() {
         // Create or find the main title
         let mainTitle: { name: string; id: number; pdlCount: number; } | undefined;
         if (createdTitles.has(title)) {
+            await prisma.title.update({ where: { name: title }, data: { pdlCount: pdlCount } })
             mainTitle = createdTitles.get(title);
         } else {
             mainTitle = await prisma.title.create({
