@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Search } from "trigify-test/app/_components/Search";
 import { HydrateClient } from "trigify-test/trpc/server";
 
@@ -9,7 +10,9 @@ export default async function Home() {
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[4rem]">
             Trigify <span className="text-[hsl(280,100%,70%)]">Job</span> Titles
           </h1>
-          <Search />
+          <Suspense>
+            <Search />
+          </Suspense>
         </div>
       </main>
     </HydrateClient>
