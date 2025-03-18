@@ -1,4 +1,4 @@
-import { postRouter } from "trigify-test/server/api/routers/post";
+import { jobTitleRouter } from "trigify-test/server/api/routers/jobTitle";
 import { createCallerFactory, createTRPCRouter } from "trigify-test/server/api/trpc";
 
 /**
@@ -6,8 +6,12 @@ import { createCallerFactory, createTRPCRouter } from "trigify-test/server/api/t
  *
  * All routers added in /api/routers should be manually added here.
  */
+// export const appRouter = createTRPCRouter({
+//   post: postRouter,
+// });
+
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  jobTitle: jobTitleRouter,
 });
 
 // export type definition of API
