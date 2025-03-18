@@ -13,6 +13,9 @@ async function main() {
     // Read the CSV file
     const fileContent = fs.readFileSync(path.join(__dirname, 'sample.csv'), 'utf-8');
 
+    console.log(fileContent);
+
+
     // Split by lines and remove the header
     const lines = fileContent.split('\n').filter(line => line.trim() !== '');
     const dataLines = lines.slice(1); // Skip the header row
