@@ -21,7 +21,7 @@ export const jobTitleRouter = createTRPCRouter({
                             mode: 'insensitive'
                         }
                     },
-                    take: 5,
+                    take: 8,
                     orderBy: { pdlCount: 'desc' },
                 });
                 return titles

@@ -10,7 +10,7 @@ async function main() {
     const __dirname = path.dirname(__filename); // get 
 
     // Read the CSV file
-    const fileContent = fs.readFileSync(path.join(__dirname, 'sample.csv'), 'utf-8');
+    const fileContent = fs.readFileSync(path.join(__dirname, 'data.csv'), 'utf-8');
 
     console.log(fileContent);
 
@@ -78,6 +78,7 @@ async function main() {
             } catch (error) {
                 // Relationship might already exist
                 console.log(`Relation already exists or error: ${title} -> ${relatedTitle}`);
+                console.log(error)
             }
         }
     }
