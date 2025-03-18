@@ -1,11 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 
 const prisma = new PrismaClient();
 
 async function main() {
+    const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+    const __dirname = path.dirname(__filename); // get 
+
     // Read the CSV file
     const fileContent = fs.readFileSync(path.join(__dirname, 'sample.csv'), 'utf-8');
 
