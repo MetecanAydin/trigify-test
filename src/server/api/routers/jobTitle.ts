@@ -5,16 +5,24 @@ import { TRPCError } from "@trpc/server";
 
 const prisma = new PrismaClient();
 
-const pageSize = 3;
+const pageSize = 10;
 
 export const jobTitleRouter = createTRPCRouter({
 
-    // Get all titles
-    getAll: publicProcedure
-        .query(async () => {
+    // Search titles by name (partial match)
+    search: publicProcedure
+        .input(z.object({ query: z.string() }))
+        .query(async ({ input }) => {
             try {
                 const titles = await prisma.title.findMany({
-                    orderBy: { pdlCount: 'desc' }
+                    where: {
+                        name: {
+                            contains: input.query,
+                            mode: 'insensitive'
+                        }
+                    },
+                    take: 5,
+                    orderBy: { pdlCount: 'desc' },
                 });
                 return titles
             } catch (error) {

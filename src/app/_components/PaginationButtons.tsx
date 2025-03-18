@@ -24,7 +24,7 @@ export const PaginationButtons = ({ total, currentPage, setCurrentPage }:
                             searchParams.set("page", (pageNumber - 1).toString());
                             router.push(`?${searchParams.toString()}`);
                         }}
-                        className={`px-4 py-2 border rounded ${currentPage === pageNumber - 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                        className={`w-[2rem] h-[2rem] border rounded ${currentPage === pageNumber - 1 ? "bg-blue-500 text-white" : "bg-gray-200"
                             }`}
                     >
                         {pageNumber}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // import { api } from "trigify-test/trpc/react";
-import { searchByName } from "../api/queries";
+import { search, searchByName } from "../api/queries";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PaginationButtons } from "./PaginationButtons";
 import { Badge } from "trigify-test/components/ui/badge";
