@@ -6,6 +6,7 @@ import { useState } from "react";
 import { searchByName } from "../api/queries";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PaginationButtons } from "./PaginationButtons";
+import { Badge } from "trigify-test/components/ui/badge";
 
 export function Search() {
   // const utils = api.useUtils();
@@ -47,29 +48,31 @@ export function Search() {
       </form>
 
       <section className="">
-        <div className="bg-white h-[300px] mt-4 text-black flex justify-center">
+        <div className="bg-white h-[400px] mt-4 text-black flex justify-center">
           {searchJobTitles.isLoading ?
             <div className="animate-pulse h-full text-center pt-4">Loading...</div>
             :
             searchJobTitles.data && searchJobTitles.data.results.length > 0 ?
               <ul className="text-left px-4 pt-4 flex flex-col w-full overflow-auto">
                 {searchJobTitles.data.results?.map(t => <li className="bg-sky-100 pl-4 py-2 mb-4" key={t.id}>
-                  Title: {t.name}
+                  <div>Title: <Badge className="p-1 hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]">{t.name}</Badge></div>
                   <div className="mt-4 flex-wrap flex flex-row">
-                    Related Titles:
+                    <p className="mb-1">Related Titles:</p>
                     <br />
-                    {t.relatedTitles.map(rt =>
-                      <span
-                        key={rt.id}
-                        onClick={e => {
-                          setName(e.currentTarget.textContent!)
-                          searchParams.set("jobTitle", e.currentTarget.textContent!);
-                          searchParams.set("page", '0');
-                          router.push(`?${searchParams.toString()}`);
-                        }}
-                        className="bg-red-100 mr-4 mb-2 p-1 rounded hover:bg-red-50 rounded-md cursor-pointer">{rt.relatedTitle.name}
-                      </span>
-                    )}
+                    <div>
+                      {t.relatedTitles.map(rt =>
+                        <Badge
+                          key={rt.id}
+                          onClick={e => {
+                            setName(e.currentTarget.textContent!)
+                            searchParams.set("jobTitle", e.currentTarget.textContent!);
+                            searchParams.set("page", '0');
+                            router.push(`?${searchParams.toString()}`);
+                          }}
+                          className="mr-2 mb-2 p-1 cursor-pointer">{rt.relatedTitle.name}
+                        </Badge>
+                      )}
+                    </div>
                   </div>
                 </li>)}
               </ul>
