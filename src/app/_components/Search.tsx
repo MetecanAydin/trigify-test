@@ -5,10 +5,12 @@ import { useState } from "react";
 // import { api } from "trigify-test/trpc/react";
 import { searchByName } from "../api/queries";
 import { useRouter, useSearchParams } from "next/navigation";
+import { PaginationButtons } from "./PaginationButtons";
 
 export function Search() {
   // const utils = api.useUtils();
   const [name, setName] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
 
   const searchParams = new URLSearchParams(useSearchParams().toString());
 
@@ -74,6 +76,13 @@ export function Search() {
               : <div className="pt-4">No data</div>
           }
         </div>
+
+        <PaginationButtons
+          total={searchJobTitles.data?.total ?? 0}
+          currentPage={Number(searchParams?.get('page')) ?? currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+
       </section>
     </div>
   );
