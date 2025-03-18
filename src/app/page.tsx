@@ -1,25 +1,25 @@
 import Link from "next/link";
 
-import { LatestPost } from "trigify-test/app/_components/post";
+import { Search } from "trigify-test/app/_components/Search";
 import { auth } from "trigify-test/server/auth";
 import { api, HydrateClient } from "trigify-test/trpc/server";
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
+  // const hello = await api.post.hello({ text: "from tRPC" });
   const session = await auth();
 
   if (session?.user) {
-    void api.post.getLatest.prefetch();
+    void api.jobTitle.getAll.prefetch();
   }
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+      <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[4rem]">
+            Trigify <span className="text-[hsl(280,100%,70%)]">Job</span> Titles
           </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
               href="https://create.t3.gg/en/usage/first-steps"
@@ -42,12 +42,9 @@ export default async function Home() {
                 to deploy it.
               </div>
             </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
+          </div> */}
 
+          {/* <div className="flex flex-col items-center gap-2">
             <div className="flex flex-col items-center justify-center gap-4">
               <p className="text-center text-2xl text-white">
                 {session && <span>Logged in as {session.user?.name}</span>}
@@ -59,9 +56,11 @@ export default async function Home() {
                 {session ? "Sign out" : "Sign in"}
               </Link>
             </div>
-          </div>
+          </div> */}
 
-          {session?.user && <LatestPost />}
+          <Search />
+
+          {/* {session?.user && <LatestPost />} */}
         </div>
       </main>
     </HydrateClient>
