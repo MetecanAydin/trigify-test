@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     // Read the CSV file
-    const fileContent = fs.readFileSync(path.join(__dirname, '../data/sample.csv'), 'utf-8');
+    const fileContent = fs.readFileSync(path.join(__dirname, 'sample.csv'), 'utf-8');
 
     // Split by lines and remove the header
     const lines = fileContent.split('\n').filter(line => line.trim() !== '');
