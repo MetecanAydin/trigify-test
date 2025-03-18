@@ -12,6 +12,41 @@ T3 stack serves as a quick and easy approach to quickly scaffold a full stack ap
 5. Clerk login authentication (you can only search after logging in)
 
 
+#### API
+
+`/searchByName`
+```typescript
+data: {
+    results: [
+        id: number
+        name: string
+        pdlCount: number
+        relatedTitles: [
+            id: number
+            relatedTitle: {
+                id: number
+                name: string
+                pdlCount: number
+            }
+            relatedTitleId: number
+            titleId: number
+        ]
+    ]
+    total: number
+}
+```
+
+`/search`
+```typescript
+data: {
+    results: [
+        id: number
+        name: string
+        pdlCount: number
+    ]
+}
+```
+
 
 #### Thoughts and Revisions
 
