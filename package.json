@@ -23,7 +23,7 @@
     "typecheck": "tsc --noEmit"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "prisma db seed"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
