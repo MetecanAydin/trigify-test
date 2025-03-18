@@ -60,12 +60,13 @@ async function main() {
 
             // Create the relationship if it doesn't exist
             try {
-                await prisma.titleRelation.create({
-                    data: {
-                        titleId: mainTitle?.id,
-                        relatedTitleId: related?.id
-                    }
-                });
+                if (mainTitle?.id && related?.id)
+                    await prisma.titleRelation.create({
+                        data: {
+                            titleId: mainTitle?.id,
+                            relatedTitleId: related?.id
+                        }
+                    });
                 console.log(`Created relation: ${title} -> ${relatedTitle}`);
             } catch (error) {
                 // Relationship might already exist
@@ -88,6 +89,7 @@ main()
         console.error(e);
         process.exit(1);
     })
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     .finally(async () => {
         await prisma.$disconnect();
     });
