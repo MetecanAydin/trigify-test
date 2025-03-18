@@ -98,7 +98,6 @@ export function Search() {
                         <Card className="bg-sky-100 pl-4 py-2 mb-4 h-full rounded-sm">
 
                           <div className="flex flex-row">
-                            Title:
                             <Badge
                               className="p-1 h-fit cursor-pointer hover:bg-[hsl(280,55%,40%)] bg-[hsl(280,55%,40%)]"
                               onClick={e => {

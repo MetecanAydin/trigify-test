@@ -2,6 +2,17 @@
 
 T3 stack serves as a quick and easy approach to quickly scaffold a full stack application as it already comes bundles with the latest essential tools required to build out something fast.
 
+
+#### Features Available
+
+1. Search functionality which provides an initial dropdown list to see available job titles
+2. Further search feature to see results with related job titles
+3. Paginated view of results (and history if you wish to navigate back and to)
+4. Each `Badge` or job title item in colour is clickable to auto search with that job title
+5. Clerk login authentication (you can only search after logging in)
+
+
+
 #### Thoughts and Revisions
 
  - We have implemented 2 different api routes as they serve a slightly different functionality. Perhaps this could be more smart given more thought and time however given one is meant to be a quick lookup for job title search information and the other for a deeper join with related job titles, I think they should serve their pusposes well for this context.
